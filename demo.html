@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>javascript 实现图片缩小</title>
+	<meta charset="utf-8">
+
+</head>
+<body>
+<div  style="width:400px;margin:0 auto">
+    <img src="images/1.jpg" id="myImage"/><br>
+    <input type="button" id="max" value="放大">
+    <input type="button" id="min" value="缩小">
+</div>
+<script type="text/javascript">
+	window.onload=function(){
+		var max=document.getElementById('max');
+		var img=document.getElementById('myImage');
+		var endwidth=img.width*1.3;
+		var endheight=img.height*1.3;
+		var limitWidth=img.width*1.5;
+		var limitHeight=img.height*1.5;
+		var minendwidth=img.width*0.8;
+		var minendheight=img.height*0.8;
+		var minlimitWidth=img.width*0.5;
+		var minlimitHeight=img.height*0.5;
+		max.onclick=function()
+		{
+			maxFun();
+			if (img.width>limitWidth||img.height>limitHeight) {
+				alert("NO");
+			}
+		}
+		function maxFun()
+		{
+			var timer=setInterval(function(){
+				if (img.width>endwidth||img.height>endheight) {
+					clearInterval(timer);
+				}
+				img.width=img.width*1.05;
+				img.height=img.height*1.05;
+
+               
+			},20);
+		}
+		var min=document.getElementById('min');
+		min.onclick=function(){
+			minFun();
+			if (img.width<minlimitWidth||img.height<minlimitHeight) {
+				alert("NO");
+			}
+		}
+		function minFun(){
+
+			var timer=setInterval(function(){
+				if (img.width<minendwidth||img.height<minendheight) {
+					clearInterval(timer);
+				}
+				img.width=img.width*0.95;
+				img.height=img.height*0.95;
+			},20);
+		}
+	}
+</script>
+</body>
+</html>
